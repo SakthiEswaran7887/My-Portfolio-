@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakthi Eswaran S - AI & Data Science Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-light: #ffffff;
+            --bg-card: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent: #0ea5e9;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero .degree {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-item strong {
+            color: var(--text-primary);
+            min-width: 80px;
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            transition: all 0.3s;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+            border-color: var(--primary);
+        }
+
+        .education-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .education-card .degree {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .year {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-card .cgpa {
+            background: linear-gradient(135deg, var(--success), #059669);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .project-icon {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .timeline-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .timeline-company {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item ul {
+            margin-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(234, 179, 8, 0.2);
+            border-color: #eab308;
+        }
+
+        .achievement-card::before {
+            content: '🏆';
+            font-size: 2.5rem;
+            position: absolute;
+            top: -1rem;
+            right: 1rem;
+        }
+
+        .achievement-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .achievement-event {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-prize {
+            color: #eab308;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .cert-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .cert-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h3 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-issuer {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <nav>
+        <div class="container">
+            <div class="logo">Sakthi Eswaran S</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Sakthi Eswaran S</h1>
+            <p class="subtitle">AI & Data Science Engineer</p>
+            <p class="degree">M.Tech Scholar | CGPA: 9.41</p>
+            <p>Results-driven AI & Data Science engineer with a strong foundation in Artificial Intelligence and Machine Learning. Passionate about analytical problem-solving, innovative model development, and real-world data-driven solutions.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Projects</a>
+                <a href="mailto:sakthieswaran7887@gmail.com" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I am a passionate AI & Data Science engineer currently pursuing M.Tech in Artificial Intelligence and Data Science with an impressive CGPA of 9.41. My journey in technology began with a B.Tech in Electrical and Electronics Engineering, where I developed a strong foundation in engineering principles.</p>
+                <p>I specialize in developing intelligent systems using computer vision, machine learning, and data analytics. My experience spans from embedded systems to cutting-edge AI applications, with a focus on creating practical solutions to real-world problems.</p>
+                <p>Dedicated to continuous learning and innovation, I thrive in collaborative environments and am always eager to take on challenging projects that push the boundaries of technology.</p>
+            </div>
+            <div class="contact-info">
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Contact Information</h3>
+                <div class="contact-item">
+                    <strong>📧 Email:</strong>
+                    <a href="mailto:sakthieswaran7887@gmail.com">sakthieswaran7887@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>📱 Phone:</strong>
+                    <span>+91 9514072366</span>
+                </div>
+                <div class="contact-item">
+                    <strong>💼 LinkedIn:</strong>
+                    <a href="https://www.linkedin.com/in/sakthieswaran2002" target="_blank">Sakthieswaran S</a>
+                </div>
+                <div class="contact-item">
+                    <strong>🐙 GitHub:</strong>
+                    <a href="https://github.com/SakthiEswaran7887" target="_blank">SakthiEswaran7887</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <h3>🎓 M.Tech</h3>
+                <div class="degree">Artificial Intelligence and Data Science</div>
+                <div class="year">2024 – 2026</div>
+                <div class="cgpa">CGPA: 9.41</div>
+            </div>
+            <div class="education-card">
+                <h3>🎓 B.Tech</h3>
+                <div class="degree">Electrical and Electronics Engineering</div>
+                <div class="year">2019 – 2023</div>
+                <div class="cgpa">CGPA: 7.49</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>📚 Frameworks</h3>
+                <div class="skill-tags">
+                    <span class="tag">Pandas</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Scikit-Learn</span>
+                    <span class="tag">Matplotlib</span>
+                    <span class="tag">TensorFlow</span>
+                    <span class="tag">Keras</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>🛠️ Tools</h3>
+                <div class="skill-tags">
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">MongoDB</span>
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Tableau</span>
+                    <span class="tag">MATLAB</span>
+                    <span class="tag">Git</span>
+                    <span class="tag">Docker</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>💻 Programming Languages</h3>
+                <div class="skill-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">C</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">Embedded C</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>🖥️ Development Platforms</h3>
+                <div class="skill-tags">
+                    <span class="tag">Jupyter Notebook</span>
+                    <span class="tag">Visual Studio Code</span>
+                    <span class="tag">React.js</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">FastAPI</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>☁️ Cloud & DevOps</h3>
+                <div class="skill-tags">
+                    <span class="tag">AWS</span>
+                    <span class="tag">Azure</span>
+                    <span class="tag">Google Cloud</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <h3>🤝 Soft Skills</h3>
+                <div class="skill-tags">
+                    <span class="tag">Communication</span>
+                    <span class="tag">Teamwork</span>
+                    <span class="tag">Problem Solving</span>
+                    <span class="tag">Self-Motivation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">💰</div>
+                <div class="project-content">
+                    <h3>SQL AI Agent — AI-based Predictive Data Assistant</h3>
+                    <p>Developed an AI agent that converts natural language queries into SQL commands for intelligent data analysis. Integrated OpenAI API with Flask backend and React frontend to automate database querying and visualization.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">OpenAI API</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">React.js</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">✍️</div>
+                <div class="project-content">
+                    <h3>Short Hand Translator — AI-based Text Conversion Tool</h3>
+                    <p>Built a system that translates shorthand writing into readable text using NLP and pattern recognition. Implemented preprocessing, tokenization, and translation logic with a user-friendly web interface.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">React.js</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🚗</div>
+                <div class="project-content">
+                    <h3>Q-Learning Based Autonomous Driving Car</h3>
+                    <p>Developed an autonomous car simulation using Q-learning to enable self-driving behavior in virtual environments. Trained the agent to navigate lanes, avoid obstacles, and make driving decisions through reward-based learning.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Q-Learning</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">CARLA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🚦</div>
+                <div class="project-content">
+                    <h3>Smart Traffic Violation Detection System</h3>
+                    <p>Built a system that detects traffic violations and identifies vehicles using YOLOv8 and OCR for license plate recognition. Integrated Flask API and React.js dashboard for real-time monitoring.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">YOLOv8</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Tesseract OCR</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">React.js</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">👁️</div>
+                <div class="project-content">
+                    <h3>Real-Time Object Detection</h3>
+                    <p>Implemented real-time object detection and recognition system using OpenCV for accurate and efficient visual processing.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Computer Vision</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🎙️</div>
+                <div class="project-content">
+                    <h3>SIMBA - Voice Control System</h3>
+                    <p>Developed a voice-controlled car appliance system using Keil, Proteus, and FlashMagic for hands-free operation.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Embedded C</span>
+                        <span class="tag">Keil</span>
+                        <span class="tag">Proteus</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-icon">🔐</div>
+                <div class="project-content">
+                    <h3>Multilevel Security Access Control</h3>
+                    <p>Created an embedded microcontroller-based access system integrating biometric authentication for enhanced security.</p>
+                    <div class="skill-tags">
+                        <span class="tag">Embedded C</span>
+                        <span class="tag">Microcontroller</span>
+                        <span class="tag">Biometric</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="experience">
+        <h2>Professional Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>AI/ML Full Stack Intern</h3>
+                <div class="timeline-company">CubeAISolutions Tech Pvt Ltd, Bangalore</div>
+                <div class="timeline-date">2025</div>
+                <ul>
+                    <li>Working on end-to-end AI/ML solutions combining frontend and backend technologies</li>
+                    <li>Developing machine learning models and deploying them in production environments</li>
+                    <li>Collaborating with cross-functional teams on innovative AI projects</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h3>Hybrid Vehicle Internship</h3>
+                <div class="timeline-company">Verzeo</div>
+                <div class="timeline-date">January 2022 - March 2022</div>
+                <ul>
+                    <li>Gained hands-on experience in Hybrid Electric Vehicle (HEV) architecture</li>
+                    <li>Studied drive trains and electric vehicle design principles</li>
+                    <li>Worked on practical implementations of hybrid vehicle technologies</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2>Achievements & Awards</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <h3>2nd Prize - Sumo & Soccer</h3>
+                <div class="achievement-event">TechOfFest, PSG Coimbatore, 2020</div>
+                <div class="achievement-prize">₹10,000</div>
+            </div>
+            <div class="achievement-card">
+                <h3>2nd Prize - Sumo & Soccer</h3>
+                <div class="achievement-event">ARC Event, Hindustan Institute of Technology, 2022</div>
+                <div class="achievement-prize">₹5,000</div>
+            </div>
+            <div class="achievement-card">
+                <h3>2nd Prize - Hybrid & Electric Vehicle</h3>
+                <div class="achievement-event">GYANITH, NIT Puducherry, 2022</div>
+                <div class="achievement-prize">₹2,000</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <div class="cert-icon">🐍</div>
+                <h3>Python Programming</h3>
+                <div class="cert-issuer">Certiport</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">☁️</div>
+                <h3>Cloud Computing</h3>
+                <div class="cert-issuer">Microsoft AZURE</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">⚡</div>
+                <h3>VECTOR Embedded Developer</h3>
+                <div class="cert-issuer">C, Embedded C, Microcontroller Protocols</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-icon">☕</div>
+                <h3>Information Technology Specialist in Java</h3>
+                <div class="cert-issuer">Certiport</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sakthi Eswaran S. All rights reserved. Built with passion for AI & Data Science.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for sections
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Add hover effect to cards
+        const cards = document.querySelectorAll('.skill-card, .project-card, .education-card, .achievement-card, .cert-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.3s ease';
+            });
+        });
+    </script>
+</body>
+</html>
